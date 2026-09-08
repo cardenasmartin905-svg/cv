@@ -220,11 +220,12 @@
     right:22px;
     display:flex;
     align-items:center;
-    gap:8px;
+    justify-content:center;
+    width:44px;
+    height:44px;
     background:var(--paper-dim);
     border:1px solid var(--line);
-    border-radius:20px;
-    padding:7px 14px 7px 12px;
+    border-radius:50%;
     font-family:'Archivo', sans-serif;
     font-size:12.5px;
     color:var(--ink-soft);
@@ -232,13 +233,24 @@
     transition:background .35s ease, border-color .35s ease, color .35s ease;
     z-index:10;
   }
-  .theme-toggle:hover{ border-color:var(--accent); color:var(--ink); }
-  .theme-toggle__dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--accent);
-    flex-shrink:0;
+  .theme-toggle:hover{ border-color:var(--accent); }
+  .theme-toggle__icon{
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+    color:var(--ink);
+  }
+  .theme-toggle:hover .theme-toggle__icon{ color:var(--ink); }
+  .theme-toggle__icon svg{
+    width:100%;
+    height:100%;
+  }
+  .theme-toggle__icon svg *{
+    stroke:currentColor;
+    fill:none;
   }
 
   @media (max-width: 760px){
@@ -259,12 +271,46 @@
     padding-top:24px;
     border-top:2px solid var(--ink);
     display:flex;
-    justify-content:space-between;
-    align-items:baseline;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
     font-size:12.5px;
     color:var(--sub);
+  }
+  .footer__name{
+    margin:0;
+    font-family:'Public Sans', sans-serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  .footer__actions{
+    display:flex;
     flex-wrap:wrap;
-    gap:8px;
+    align-items:center;
+    gap:10px 24px;
+  }
+  .footer__link{
+    color:var(--sub);
+  }
+  .footer__link:hover{ color:var(--accent); }
+  .footer__cta{
+    display:inline-block;
+    background:var(--accent);
+    color:var(--paper);
+    border:1px solid var(--accent);
+    border-radius:20px;
+    padding:8px 18px;
+    font-family:'Archivo', sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    text-decoration:none;
+    transition:background .35s ease, color .35s ease, border-color .35s ease;
+  }
+  .footer__cta:hover{
+    background:transparent;
+    color:var(--accent);
+    text-decoration:none;
   }
 
   /* ---------- Responsive ---------- */

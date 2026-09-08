@@ -13,15 +13,14 @@
 
 <div class="sheet">
 
-  <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
-    <span class="theme-toggle__dot"></span>
-    <span id="themeToggleLabel">Modo oscuro</span>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Activar modo oscuro" title="Activar modo oscuro">
+    <span class="theme-toggle__icon" id="themeIcon" aria-hidden="true"></span>
   </button>
 
   <header class="masthead">
     <div class="masthead__kicker">
       <span>Curriculum — 2026</span>
-      <span>Cancún, Quintana Roo, MX</span>
+      <span><a class="footer__cta" href="https://www.behance.net/martncrdenas2" target="_blank" rel="noopener">Ver portafolio en Behance</a></span>
     </div>
     <div class="masthead__logo" role="img" aria-label="MARTIN CONTRERAS GRAPHIC DESIGNER">
       <svg viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -44,10 +43,10 @@
       </svg>
     </div>
     
-    <div class="contact-strip">
+    <!-- <div class="contact-strip">
       <span>+52 667 334 1223</span>
       <span><a href="mailto:cardenasmartin905@gmail.com">cardenasmartin905@gmail.com</a></span>
-    </div>
+    </div> -->
   </header>
 
   <div class="layout">
@@ -197,20 +196,61 @@
   </div>
 
   <footer class="footer">
-    <span>Martín Contreras Cárdenas</span>
-    <span>cardenasmartin905@gmail.com · +52 667 334 1223</span>
+    <p class="footer__name">Martín Contreras Cárdenas - Cancún, Quintana Roo.</p>
+    <div class="footer__actions">
+      <a class="footer__link" href="tel:+526673341223">+52 667 334 1223</a>
+      <a class="footer__link" href="mailto:cardenasmartin905@gmail.com">cardenasmartin905@gmail.com</a>
+      <a class="footer__cta" href="https://www.behance.net/martncrdenas2" target="_blank" rel="noopener">Ver portafolio en Behance</a>
+    </div>
   </footer>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 <script>
   const btn = document.getElementById('themeToggle');
-  const label = document.getElementById('themeToggleLabel');
+  const icon = document.getElementById('themeIcon');
+  const SUN_FRAME = 0;
+  const MOON_FRAME = 14;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const savedTheme = localStorage.getItem('theme');
+  const isDark = savedTheme ? savedTheme === 'dark' : false;
+  document.body.classList.toggle('dark', isDark);
+  btn.setAttribute('aria-pressed', String(isDark));
+  btn.setAttribute('aria-label', isDark ? 'Activar modo claro' : 'Activar modo oscuro');
+  btn.title = btn.getAttribute('aria-label');
+
+  const anim = lottie.loadAnimation({
+    container: icon,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: 'Assets/icons8-sun.json'
+  });
+
+  let animReady = false;
+  anim.addEventListener('DOMLoaded', () => {
+    animReady = true;
+    anim.goToAndStop(isDark ? SUN_FRAME : MOON_FRAME, true);
+  });
+
+  const setTheme = (dark) => {
+    document.body.classList.toggle('dark', dark);
+    btn.setAttribute('aria-pressed', String(dark));
+    btn.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro');
+    btn.title = btn.getAttribute('aria-label');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  };
 
   btn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark');
-    btn.setAttribute('aria-pressed', String(isDark));
-    label.textContent = isDark ? 'Modo claro' : 'Modo oscuro';
+    const goingDark = !document.body.classList.contains('dark');
+    if (animReady && !prefersReducedMotion) {
+      anim.playSegments(goingDark ? [MOON_FRAME, SUN_FRAME] : [SUN_FRAME, MOON_FRAME], true);
+    } else {
+      anim.goToAndStop(goingDark ? SUN_FRAME : MOON_FRAME, true);
+    }
+    setTheme(goingDark);
   });
 </script>
 </body>
