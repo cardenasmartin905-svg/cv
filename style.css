@@ -1,0 +1,285 @@
+  :root{
+    --paper:##ebebeb;
+    --paper-dim:##ebebeb;
+    --ink:#211D17;
+    --ink-soft:#4A4438;
+    --sub:#6E6858;
+    --line:#DCD5C4;
+    --accent:#080808;
+  }
+
+  body.dark{
+    --paper:#0a0a0a;
+    --paper-dim:#080808;
+    --ink:#F3EFE4;
+    --ink-soft:#C9C2AF;
+    --sub:#8C8672;
+    --line:#fff201;
+    --accent:#ffcd19;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    transition:background .35s ease, color .35s ease;
+  }
+
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  .sheet{
+    max-width:920px;
+    margin:0 auto;
+    padding:64px 48px 80px;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    border-bottom:2px solid var(--ink);
+    padding-bottom:28px;
+    margin-bottom:40px;
+  }
+  .masthead__kicker{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:13px;
+    letter-spacing:.02em;
+    color:var(--sub);
+    margin-bottom:18px;
+  }
+  .masthead__logo{
+    display:flex;
+    justify-content:center;
+    margin:0 0 6px;
+  }
+  .masthead__logo svg{
+    width:240px;
+    height:240px;
+    color:var(--ink);
+    max-width:100%;
+  }
+  .masthead__role{
+    font-family:'Public Sans', sans-serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--ink-soft);
+    margin:10px 0 0;
+    text-align:center;
+  }
+
+  .contact-strip{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 28px;
+    margin-top:22px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .contact-strip span{ white-space:nowrap; }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns: 1fr 260px;
+    gap:56px;
+  }
+
+  .col-main{ min-width:0; }
+  .col-side{ min-width:0; }
+
+  section{ margin-bottom:44px; }
+  section:last-child{ margin-bottom:0; }
+
+  .section-title{
+    font-family:'Public Sans', sans-serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:15px;
+    color:var(--accent);
+    margin:0 0 20px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ---------- Experience entries ---------- */
+  .entry{
+    display:grid;
+    grid-template-columns: 148px 1fr;
+    gap:20px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .entry:first-of-type{ border-top:none; padding-top:0; }
+
+  .entry__date{
+    font-size:12.5px;
+    color:var(--sub);
+    line-height:1.5;
+    padding-top:2px;
+  }
+  .entry__title{
+    font-weight:600;
+    font-size:16px;
+    margin:0 0 2px;
+  }
+  .entry__org{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 8px;
+  }
+  .entry__desc{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  /* ---------- Sidebar blocks ---------- */
+  .block{ margin-bottom:36px; }
+  .block:last-child{ margin-bottom:0; }
+
+  .fact{
+    margin-bottom:16px;
+  }
+  .fact:last-child{ margin-bottom:0; }
+  .fact__label{
+    font-weight:600;
+    font-size:14.5px;
+    margin:0 0 2px;
+  }
+  .fact__meta{
+    font-size:12.5px;
+    color:var(--sub);
+    margin:0 0 4px;
+  }
+  .fact__extra{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .skill-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    padding:9px 0;
+    border-top:1px solid var(--line);
+    font-size:14px;
+  }
+  .skill-row:first-of-type{ border-top:none; padding-top:0; }
+  .skill-row__level{
+    font-size:12px;
+    color:var(--sub);
+    white-space:nowrap;
+  }
+
+  .tag-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tag{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:5px 10px;
+  }
+
+  .plain-list{
+    margin:0;
+    padding:0;
+    list-style:none;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.9;
+  }
+  .plain-list li{
+    padding-left:14px;
+    position:relative;
+  }
+  .plain-list li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+  }
+
+  /* ---------- Theme toggle ---------- */
+  .theme-toggle{
+    position:fixed;
+    top:22px;
+    right:22px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:7px 14px 7px 12px;
+    font-family:'Archivo', sans-serif;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:background .35s ease, border-color .35s ease, color .35s ease;
+    z-index:10;
+  }
+  .theme-toggle:hover{ border-color:var(--accent); color:var(--ink); }
+  .theme-toggle__dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+
+  @media (max-width: 760px){
+    .theme-toggle{
+      position:static;
+      display:inline-flex;
+      margin-bottom:24px;
+    }
+  }
+
+  @media print{
+    .theme-toggle{ display:none; }
+  }
+
+  /* ---------- Footer ---------- */
+  .footer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:2px solid var(--ink);
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:12.5px;
+    color:var(--sub);
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 760px){
+    .sheet{ padding:40px 22px 56px; }
+    .layout{ grid-template-columns: 1fr; gap:8px; }
+    .col-side{ order:2; margin-top:8px; }
+    .col-main{ order:1; }
+    .entry{ grid-template-columns: 1fr; gap:4px; }
+    .entry__date{ padding-top:0; }
+    .masthead__kicker{ flex-direction:column; gap:4px; }
+    section{ margin-bottom:36px; }
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .sheet{ padding:0 8mm; max-width:none; }
+  }
