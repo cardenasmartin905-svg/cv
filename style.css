@@ -41,7 +41,6 @@
 
   /* ---------- Masthead ---------- */
   .masthead{
-    border-bottom:2px solid var(--ink);
     padding-bottom:28px;
     margin-bottom:40px;
   }
