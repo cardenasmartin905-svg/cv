@@ -293,7 +293,7 @@
   .footer__link{
     color:var(--sub);
   }
-  .footer__link:hover{ color:white; }
+  .footer__link:hover{ color:var(--accent); }
   .footer__cta{
     display:inline-block;
     background:var(--accent);
